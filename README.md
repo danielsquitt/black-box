@@ -1,11 +1,11 @@
 # core-final-project
 
 ## Motivación
----
+
 Actualmente estoy desarrollando un proyecto junto con unos compañeros para la automatización del proceso de fermentación y maduración de la cerveza. Una parte de este proyecto consiste en una dashboard para gestionar todo. En este proyecto se pretende alcanzar las funcionalidades mínimas de está aplicación
 
 ## Descripción del proyecto
----
+
 Cada cliente tiene unos dispositivos físicos encargados de controlar temperatura y presión en los tanques de fermentación. Estos dispositivos se conectan a un servidor tanto para poder ser controlados y monitoreados remotamente, como para ir registrando métricas que luego se graficarán.
 
 Este proyecto abarca el dashboard de cliente para administrar y monitorear los dispositivos. En la pantalla principal de dashboard de mostrará todos los tanques con sus métricas y estado en tiempo real.
@@ -40,7 +40,7 @@ Artefactos encargados de controlar la temperatura y presión del tanque y que cu
 ```
 
 ## API
----
+
  - CRUD `Clients`
     - `GET /clients`: Lista de clientes
     - `GET /clients/:id`: Detalle de un clientes
