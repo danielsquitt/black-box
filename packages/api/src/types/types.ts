@@ -4,3 +4,12 @@ import { FastifyRequest } from 'fastify';
 export type FastifyParamIdRequest = FastifyRequest<{
   Params: { id: string }
 }>;
+
+export type FastifyBodyRequest<T> = FastifyRequest<{
+  Body: T
+}>;
+
+export type FastifyPrmIdBodyRequest<T> = FastifyRequest<{
+  Params: { id: string },
+  Body: T
+}>;
