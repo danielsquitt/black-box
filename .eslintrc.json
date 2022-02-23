@@ -1,0 +1,31 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "airbnb-typescript"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": ["./packages/api/tsconfig.json", "./packages/front/tsconfig.json"]
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "linebreak-style": ["error", "windows"],
+        "camelcase": "off",
+        "@typescript-eslint/naming-convention":"off",
+        "no-underscore-dangle": ["error", { "allow": ["_id"] }]
+    }
+}
