@@ -10,15 +10,16 @@ export interface iClient extends Document {
 
 const schema = new Schema(
   {
-    name: { type: String, require: true },
+    name: { type: String, require: true, unique: true },
     address: { type: String },
     city: { type: String },
-    zip: { type: Number },
-    country: { type: String },
+    zip: { type: Number, max: [6, 'Zip max length 6'], min: [4, 'Zip max length 4'] },
+    country: { type: String, default: 'Spain' },
   },
   {
-    timestamps: true,
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
   },
 );
 
-export const Client = mongoose.model<iClient>('Client', schema);
+const Client = mongoose.model<iClient>('Client', schema);
+export default Client;

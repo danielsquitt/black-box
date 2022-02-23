@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-export interface iClient extends Document {
+export interface iTanck extends Document {
   alias: String,
   description: String,
   client_id: String
@@ -11,11 +11,11 @@ const schema = new Schema(
     name: { type: String, require: true },
     description: { type: String },
     client_id: { type: Schema.Types.ObjectId, ref: 'Client', require: true },
-    device_id: { type: Schema.Types.ObjectId, ref: 'Device', require: true },
   },
   {
-    timestamps: true,
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
   },
 );
 
-export const Client = mongoose.model<iClient>('Client', schema);
+const Tank = mongoose.model<iTanck>('Tank', schema);
+export default Tank;
