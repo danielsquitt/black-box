@@ -1,5 +1,5 @@
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
-import { FastifyParamIdRequest } from '../../types/types';
+import { FastifyParamIdRequest } from '../types/types';
 
 const list_tanks = async (request: FastifyRequest, reply: FastifyReply) => {
   reply.send({ message: 'get tanks: status OK' });

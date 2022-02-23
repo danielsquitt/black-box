@@ -1,5 +1,5 @@
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
-import { FastifyParamIdRequest } from '../../types/types';
+import { FastifyParamIdRequest } from '../types/types';
 
 const list_devices = async (request: FastifyRequest, reply: FastifyReply) => {
   reply.send({ message: 'get devices: status OK' });
