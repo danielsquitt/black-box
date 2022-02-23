@@ -1,9 +1,14 @@
 import React from 'react';
+import { AppProps } from 'next/dist/shared/lib/router/router';
+import Menu from '../componets/menu';
 
-function App(props) {
-  const { Component, pageProps, router } = props;
+function App(props: AppProps) {
+  const { Component, pageProps } = props;
   return (
-    <Component {...pageProps} />
+    <>
+      <Menu />
+      <Component {...pageProps} />
+    </>
   );
 }
 
