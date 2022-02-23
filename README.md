@@ -113,18 +113,12 @@ Artefactos encargados de controlar la temperatura y presión del tanque y que cu
 ## Registration flow
 
 ```mermaid
-graph LR
-    subgraph 1. User Registration
-    UserA[User] -->|registers| TbbAppC[Tbb App]
-    AdminC[User Admin] -->|associates| Userb[User] -->|with| ClientDBC[(Client)]
-    end
-    subgraph 2. Client Admin registartion
-    ClientB[Client] -.- AdminA[User Admin] -->|registers| TbbAppA[Tbb App]
-    TBBB[TBB] -->|associates| AdminB[User Admin] -->|with| ClientDBB[(Client)]
-    end
-    subgraph 3. Cliente creation
-    ClientA[Client] -->|contract| TBBA[TBB] -->|creates| ClientDBA[(Client)]
-    end
+sequenceDiagram
+    CLIENT ->> TBB : Contracts
+    TBB ->> TBB_APP: Creates Client
+    CLIENT ->> TBB_APP: Registers with client id
+    USER ->> TBB_APP: Registers with client id
+    CLIENT ->> TBB_APP: Confirms user
 ```
 
 ## Front
