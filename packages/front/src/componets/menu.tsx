@@ -1,25 +1,14 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
+import NavBar from './menu_components/NavBar';
+import Side from './menu_components/Side';
 
 function Menu() {
+  const [collapse, setCollapse] = useState(true);
   return (
-    <ul>
-      <li>
-        <Link href="/dashboard"> Dashboard</Link>
-      </li>
-      <li>
-        <Link href="/tanks"> Tanks</Link>
-      </li>
-      <li>
-        <Link href="/devices"> Devices</Link>
-      </li>
-      <li>
-        <Link href="/clients"> Clients</Link>
-      </li>
-      <li>
-        <Link href="/users"> Users</Link>
-      </li>
-    </ul>
+    <>
+      <NavBar setCollapse={setCollapse} />
+      <Side collapse={collapse} setCollapse={setCollapse} />
+    </>
   );
 }
 export default Menu;
