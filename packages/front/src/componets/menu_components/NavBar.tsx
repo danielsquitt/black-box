@@ -1,4 +1,6 @@
 import React from 'react';
+import Clock from './Clock';
+import FullScreenButton from './FullScreenButton';
 import {
   BrandLogo,
   BrandText,
@@ -17,7 +19,10 @@ function NavBar({ setCollapse }:
           <BrandText>Brand Text</BrandText>
         </BrandWrapper>
       </NavMenu>
-      <NavMenu className="right" />
+      <NavMenu className="right">
+        <FullScreenButton />
+        <Clock />
+      </NavMenu>
     </Nav>
   );
 }

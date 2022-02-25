@@ -23,8 +23,6 @@ export const Nav = styled.nav`
 export const NavMenu = styled.ul`
   display: flex;
   list-style: none;
-  margin-block-start: 0;
-  margin-block-end: 0;
   padding-inline-start: 0;
   &.right {
     margin-left: auto;
@@ -48,6 +46,7 @@ font-size: 30px;
 font-family: "Segoe UI";
 font-weight: 400 ;
 color: white;
+text-shadow: 0px 0px 2px white;
 letter-spacing: -1px;
 `;
 
@@ -73,11 +72,6 @@ export const AsideWrapper = styled.div`
   padding: 0 5px;
 `;
 export const NavSide = styled.ul`
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-  padding-inline-start: 0;
   padding: 1em 0;
 `;
 
