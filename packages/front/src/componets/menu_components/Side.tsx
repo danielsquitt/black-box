@@ -5,6 +5,7 @@ import { MdDashboard } from 'react-icons/md';
 import { HiOutlineDeviceTablet, HiUsers } from 'react-icons/hi';
 import { GiWaterTank } from 'react-icons/gi';
 import { FaBuilding } from 'react-icons/fa';
+import { IconType } from 'react-icons/lib';
 import {
   Aside,
   AsideWrapper,
@@ -18,6 +19,22 @@ import {
   UserText,
   UserWrapper,
 } from './styled.elements';
+
+function NavListItem({
+  active, href, icon, text,
+}:
+{ active: Boolean, href: string, icon: IconType, text: String }) {
+  return (
+    <NavItem>
+      <Link href={href} passHref>
+        <NavLink className={cx({ active })}>
+          <NavItemIcon icon={icon} />
+          <NavText>{text}</NavText>
+        </NavLink>
+      </Link>
+    </NavItem>
+  );
+}
 
 function Side({ collapse, setCollapse }:
 { collapse: Boolean, setCollapse: (state: Boolean) => void }) {
@@ -34,46 +51,11 @@ function Side({ collapse, setCollapse }:
           <Logout className={cx({ collapse })} />
         </UserWrapper>
         <NavSide>
-          <NavItem>
-            <Link href="/dashboard" passHref>
-              <NavLink className="active">
-                <NavItemIcon icon={MdDashboard} />
-                <NavText>Dashboard</NavText>
-              </NavLink>
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/tanks" passHref>
-              <NavLink>
-                <NavItemIcon icon={GiWaterTank} />
-                <NavText>Tanks</NavText>
-              </NavLink>
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/devices" passHref>
-              <NavLink>
-                <NavItemIcon icon={HiOutlineDeviceTablet} />
-                <NavText>Devices</NavText>
-              </NavLink>
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/clients" passHref>
-              <NavLink>
-                <NavItemIcon icon={FaBuilding} />
-                <NavText>Clients</NavText>
-              </NavLink>
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link href="/users" passHref>
-              <NavLink>
-                <NavItemIcon icon={HiUsers} />
-                <NavText>Users</NavText>
-              </NavLink>
-            </Link>
-          </NavItem>
+          <NavListItem active href="/dashboard" icon={MdDashboard} text="Dashboard" />
+          <NavListItem active={false} href="/tanks" icon={GiWaterTank} text="Tanks" />
+          <NavListItem active={false} href="/devices" icon={HiOutlineDeviceTablet} text="Devices" />
+          <NavListItem active={false} href="/clients" icon={FaBuilding} text="Clients" />
+          <NavListItem active={false} href="/users" icon={HiUsers} text="Users" />
         </NavSide>
       </AsideWrapper>
     </Aside>
