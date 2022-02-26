@@ -38,6 +38,11 @@ function NavListItem({
 
 function Side({ collapse, setCollapse }:
 { collapse: Boolean, setCollapse: (state: Boolean) => void }) {
+  const [path, setPath] = React.useState(window.location.pathname);
+  React.useEffect(() => {
+    setPath(window.location.pathname);
+  }, [window.location.pathname]);
+
   return (
     <Aside
       className={cx({ collapse })}
@@ -51,11 +56,11 @@ function Side({ collapse, setCollapse }:
           <Logout className={cx({ collapse })} />
         </UserWrapper>
         <NavSide>
-          <NavListItem active href="/dashboard" icon={MdDashboard} text="Dashboard" />
-          <NavListItem active={false} href="/tanks" icon={GiWaterTank} text="Tanks" />
-          <NavListItem active={false} href="/devices" icon={HiOutlineDeviceTablet} text="Devices" />
-          <NavListItem active={false} href="/clients" icon={FaBuilding} text="Clients" />
-          <NavListItem active={false} href="/users" icon={HiUsers} text="Users" />
+          <NavListItem active={path === '/dashboard'} href="/dashboard" icon={MdDashboard} text="Dashboard" />
+          <NavListItem active={path === '/tanks'} href="/tanks" icon={GiWaterTank} text="Tanks" />
+          <NavListItem active={path === '/devices'} href="/devices" icon={HiOutlineDeviceTablet} text="Devices" />
+          <NavListItem active={path === '/clients'} href="/clients" icon={FaBuilding} text="Clients" />
+          <NavListItem active={path === '/users'} href="/users" icon={HiUsers} text="Users" />
         </NavSide>
       </AsideWrapper>
     </Aside>
