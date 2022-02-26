@@ -3,7 +3,7 @@ import NavBar from './menu_components/NavBar';
 import Side from './menu_components/Side';
 
 function Menu() {
-  const [collapse, setCollapse] = useState(true);
+  const [collapse, setCollapse] = useState<Boolean>(true);
   return (
     <>
       <NavBar setCollapse={setCollapse} />

@@ -7,11 +7,10 @@ const FullScreenEnter = styled(BsArrowsFullscreen)`
   height: 25px;
   width: 25px;
   margin: 10px 20px;
-  color: white;
   flex-shrink: 0;
   transition: color 0.1s ease-in-out;
   &:hover {
-    color: #c5c5c5;
+    color: ${(props) => props.theme.color.navbar.hover};
   }
 `;
 
@@ -20,11 +19,10 @@ const FullScreenExit = styled(BsFullscreenExit)`
   height: 30px;
   width: 30px;
   margin: 10px 20px;
-  color: white;
   flex-shrink: 0;
   transition: color 0.1s ease-in-out;
   &:hover {
-    color: #c5c5c5;
+    color: ${(props) => props.theme.color.navbar.hover};
   }
 `;
 

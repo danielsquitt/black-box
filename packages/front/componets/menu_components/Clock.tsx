@@ -13,7 +13,6 @@ const ClockWrapper = styled.div`
     font-size: 15px;
     font-weight: 500;
     letter-spacing: 1px;
-    color: white;
   }
 `;
 

@@ -6,9 +6,9 @@ import { IconType } from 'react-icons/lib';
 
 export const Nav = styled.nav`
   width: 100%;
-  height: 66px;
-  background-color: grey;
-  color: #1f2d3d;
+  height: ${(props) => props.theme.size.navbar};
+  background-color: ${(props) => props.theme.color.navbar.background};
+  color: ${(props) => props.theme.color.navbar.color};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,30 +45,30 @@ padding: 0.1em 0.5em;
 font-size: 30px;
 font-family: "Segoe UI";
 font-weight: 400 ;
-color: white;
 text-shadow: 0px 0px 2px white;
 letter-spacing: -1px;
 `;
 
 export const Aside = styled.aside`
   height: 100%;
-  width: 250px;
+  width: ${(props) => props.theme.size.sidebar};
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: black;
+  background-color: ${(props) => props.theme.color.sidebar.background};
+  color: ${(props) => props.theme.color.sidebar.color};
   overflow-x: hidden;
   transition: width 0.3s ease-in-out 0.1s;
 
   &.collapse {
-    width: 80px;
+    width: ${(props) => props.theme.size.sidebar_collapse};
   }
 `;
 
 export const AsideWrapper = styled.div`
   position: relative;
-  top: 66px;
+  top: ${(props) => props.theme.size.navbar};
   padding: 0 5px;
 `;
 export const NavSide = styled.ul`
@@ -77,7 +77,6 @@ export const NavSide = styled.ul`
 
 export const NavItem = styled.li``;
 export const NavLink = styled.a`
-  color: #fffafa;
   margin-bottom: 0.2rem;
   display: flex;
   align-items: center;
@@ -85,14 +84,14 @@ export const NavLink = styled.a`
   text-decoration: none;
   background-color: transparent;
   &:visited {
-    color: #fffafa;
+    color: ${(props) => props.theme.color.sidebar.color};
   }
   &:hover {
-    background-color: #ffffff2b;
+    background-color: ${(props) => props.theme.color.sidebar.hover};
   }
   &.active {
-    color: #000000;
-    background-color: #fcfcfcf9;
+    color: ${(props) => props.theme.color.sidebar.background};
+    background-color: ${(props) => props.theme.color.sidebar.color};
   }
 `;
 
@@ -142,7 +141,6 @@ export const UserText = styled.div`
   font-family: 'Segoe UI';
   font-weight: 400;
   white-space: nowrap;
-  color: white;
   letter-spacing: -1px;
   display: block;
   overflow: hidden;
@@ -150,7 +148,7 @@ export const UserText = styled.div`
 `;
 
 export const Logout = styled(MdLogout)`
-  color: #850202;
+  color: #ad0606;
   width: 50px;
   display: block;
   flex-shrink: 1;
