@@ -38,10 +38,10 @@ function NavListItem({
 
 function Side({ collapse, setCollapse }:
 { collapse: Boolean, setCollapse: (state: Boolean) => void }) {
-  const [path, setPath] = React.useState(window.location.pathname);
+  const [path, setPath] = React.useState('');
   React.useEffect(() => {
     setPath(window.location.pathname);
-  }, [window.location.pathname]);
+  }, []);
 
   return (
     <Aside

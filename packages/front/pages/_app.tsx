@@ -3,33 +3,14 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import Head from 'next/head';
 import Menu from '../componets/menu';
-
-const theme = {
-  color: {
-    background: 'white',
-    navbar: {
-      color: 'white',
-      background: 'grey',
-      hover: '#c5c5c5',
-    },
-    sidebar: {
-      color: 'white',
-      background: 'black',
-      hover: '#c5c5c5',
-    },
-  },
-  size: {
-    navbar: '66px',
-    sidebar: '250px',
-    sidebar_collapse: '80px',
-  },
-};
+import theme from '../lib/theme';
 
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI';
   }
   main {
     margin-top: ${theme.size.navbar};
@@ -37,7 +18,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0.5rem;
   }
   body {
-    background-color: ${theme.color.background};
+    background-color: ${theme.color.main.background};
+    color: ${theme.color.main.color}
   }
 `;
 
