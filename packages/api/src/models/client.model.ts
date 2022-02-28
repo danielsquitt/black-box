@@ -6,6 +6,7 @@ export interface iClient extends Document {
   city: String,
   zip: Number,
   country: String,
+  img: String,
 }
 
 const schema = new Schema(
@@ -13,8 +14,9 @@ const schema = new Schema(
     name: { type: String, require: true, unique: true },
     address: { type: String },
     city: { type: String },
-    zip: { type: Number, max: [6, 'Zip max length 6'], min: [4, 'Zip max length 4'] },
+    zip: { type: String, max: [6, 'Zip max length 6'], min: [4, 'Zip max length 4'] },
     country: { type: String, default: 'Spain' },
+    img: { type: String },
   },
   {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },

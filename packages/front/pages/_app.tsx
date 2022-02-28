@@ -10,7 +10,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+  :root{
     font-family: 'Segoe UI';
+    font-size: 18px;
   }
   main {
     margin-top: ${theme.size.navbar};

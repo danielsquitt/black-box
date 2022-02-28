@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import cx from 'classnames';
 import { MdDashboard } from 'react-icons/md';
 import { HiOutlineDeviceTablet, HiUsers } from 'react-icons/hi';
@@ -38,10 +39,7 @@ function NavListItem({
 
 function Side({ collapse, setCollapse }:
 { collapse: Boolean, setCollapse: (state: Boolean) => void }) {
-  const [path, setPath] = React.useState('');
-  React.useEffect(() => {
-    setPath(window.location.pathname);
-  }, []);
+  const router = useRouter();
 
   return (
     <Aside
@@ -56,11 +54,11 @@ function Side({ collapse, setCollapse }:
           <Logout className={cx({ collapse })} />
         </UserWrapper>
         <NavSide>
-          <NavListItem active={path === '/dashboard'} href="/dashboard" icon={MdDashboard} text="Dashboard" />
-          <NavListItem active={path === '/tanks'} href="/tanks" icon={GiWaterTank} text="Tanks" />
-          <NavListItem active={path === '/devices'} href="/devices" icon={HiOutlineDeviceTablet} text="Devices" />
-          <NavListItem active={path === '/clients'} href="/clients" icon={FaBuilding} text="Clients" />
-          <NavListItem active={path === '/users'} href="/users" icon={HiUsers} text="Users" />
+          <NavListItem active={router.pathname.includes('/dashboard')} href="/dashboard" icon={MdDashboard} text="Dashboard" />
+          <NavListItem active={router.pathname.includes('/tanks')} href="/tanks" icon={GiWaterTank} text="Tanks" />
+          <NavListItem active={router.pathname.includes('/devices')} href="/devices" icon={HiOutlineDeviceTablet} text="Devices" />
+          <NavListItem active={router.pathname.includes('/clients')} href="/clients" icon={FaBuilding} text="Clients" />
+          <NavListItem active={router.pathname.includes('/users')} href="/users" icon={HiUsers} text="Users" />
         </NavSide>
       </AsideWrapper>
     </Aside>

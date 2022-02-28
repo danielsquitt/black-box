@@ -109,14 +109,14 @@ export const NavText = styled.p`
 
 export function NavItemIcon({ icon }:
 { icon: IconType }) {
-  const Iconelemnt = styled(icon)`
+  const IconElemnt = styled(icon)`
     display: inline-block;
     height: 30px;
     width: 30px;
     margin: 10px 20px;
     flex-shrink: 0;
   `;
-  return <Iconelemnt />;
+  return <IconElemnt />;
 }
 
 export const UserWrapper = styled.a`
