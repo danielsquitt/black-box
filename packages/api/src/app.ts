@@ -1,4 +1,5 @@
 import { FastifyPluginAsync } from 'fastify';
+import fastifyCors from 'fastify-cors';
 import formBodyPlugin from 'fastify-formbody';
 import connectDB from './lib/db';
 import client_router from './routes/client.route';
@@ -9,6 +10,8 @@ import user_router from './routes/user.router';
 
 const main_app: FastifyPluginAsync = async (app) => {
   connectDB();
+
+  await app.register(fastifyCors);
 
   app.register(formBodyPlugin);
 

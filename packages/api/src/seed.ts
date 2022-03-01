@@ -28,75 +28,108 @@ import DeviceTank from './models/device-tank.nodels';
     name: 'Cervezas Arriaca SL',
     address: 'Avda De La Industria 3 A - Nave 6',
     city: 'Yunquera de Henares, Guadalajara',
-    zip: 19210,
+    zip: '19210',
     country: 'España',
+    img: 'https://arriaca.es/wp-content/uploads/2021/01/Arriaca-Favicon.png',
   });
 
   const client2 = await Client.create({
-    name: 'Cervecera Octavo Arte SL',
-    address: 'Carretera Valladolid, 8',
-    city: 'La Lastrilla, Segovia',
-    zip: 40196,
+    name: 'Maresme Brewery Sl.',
+    address: 'Calle Empedrat del Marxant, 1 - P 2 PTA. 3',
+    city: 'Alella, Barcelona',
+    zip: '08328',
     country: 'España',
+    img: 'https://cdn.shopify.com/s/files/1/0254/8852/3345/files/MB_Logo_LLetres_300x300.png',
   });
 
   const client3 = await Client.create({
     name: 'Cervecera Peninsula SL',
     address: 'Calle de la Granja, 5',
     city: 'Alcobendas, Madrid',
-    zip: 28108,
+    zip: '28108',
     country: 'España',
+    img: 'https://cdn.shopify.com/s/files/1/0072/8419/5401/files/Logo_Peninsula-03_300x300.png',
   });
 
   // Create Devices
   // --------------------------------------------------------------
   const device1 = await Device.create({
     name: 'CPCTRL_0722_0001',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client1._id,
   });
 
   const device2 = await Device.create({
     name: 'CPCTRL_0722_0002',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client1._id,
   });
 
   const device3 = await Device.create({
     name: 'CPCTRL_0722_0003',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client1.id,
   });
 
   const device4 = await Device.create({
     name: 'CPCTRL_0722_0004',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client1._id,
   });
 
   const device5 = await Device.create({
     name: 'CPCTRL_0722_0005',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client1._id,
   });
 
   const device6 = await Device.create({
     name: 'CPCTRL_0722_0006',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client2._id,
   });
 
   const device7 = await Device.create({
     name: 'CPCTRL_0722_0007',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client3._id,
   });
 
   const device8 = await Device.create({
     name: 'CPCTRL_0722_0008',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client3._id,
   });
 
   const device9 = await Device.create({
     name: 'CPCTRL_0722_0009',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client3._id,
   });
 
   const device10 = await Device.create({
     name: 'CPCTRL_0722_0010',
+    type: 'Type 1',
+    version: '1.0.0',
+    sw_v: '0.1.0',
     client_id: client3._id,
   });
 
