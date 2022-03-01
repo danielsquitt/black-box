@@ -2,8 +2,11 @@ import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import Head from 'next/head';
+import { defaults } from 'react-sweet-state';
 import Menu from '../componets/menu';
 import theme from '../lib/theme';
+
+defaults.devtools = true;
 
 const GlobalStyle = createGlobalStyle`
   * {
