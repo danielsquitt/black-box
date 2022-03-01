@@ -1,12 +1,10 @@
 /* eslint-disable  */
 import React from 'react';
 import { useRouter } from 'next/router'
-import { SubmitHandler, useForm, UseFormHandleSubmit } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import Button from '../../componets/Button';
 import { FormWrapper, H2, OptionsWrapper } from '../../componets/PageElements';
 import Form from '../../componets/Form';
-import useClient from '../../lib/state/clients';
-import { ClientData } from '../../lib/state/types';
 
 function AddClient() {
   const router = useRouter()
@@ -15,13 +13,8 @@ function AddClient() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<ClientData>();
-  
-  const [{ }, { add }] = useClient();
-  const onSubmit = (data: ClientData) => {
-    console.log("Submit", data)
-    add(data)
-  };
+  } = useForm();
+  const onSubmit = () => console.log("Submit");
 
   return (
     <div>
@@ -46,7 +39,7 @@ function AddClient() {
           {errors.country && <span>This field is required</span>}
 
           <label htmlFor="img">Logo</label>
-          <input className="input" type="text" id="img" {...register('img')} />
+          <input className="input file" type="file" id="img" accept='image/png'{...register('img')} />
           {errors.img && <span>This field is required</span>}
 
           <div className="button-wrapper">
