@@ -9,6 +9,7 @@ const list_devices = async (request: FastifyRequest, reply: FastifyReply) => {
   }).catch((error) => {
     reply.code(500).send({ message: error });
   });
+  return reply;
 };
 
 const get_device_byId = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
@@ -26,6 +27,7 @@ const get_device_byId = async (request: FastifyParamIdRequest, reply: FastifyRep
     }).catch((error) => {
       reply.code(500).send({ message: error });
     });
+  return reply;
 };
 
 const new_device = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
@@ -34,6 +36,7 @@ const new_device = async (request: FastifyParamIdRequest, reply: FastifyReply) =
   }).catch((error) => {
     reply.code(500).send({ message: error });
   });
+  return reply;
 };
 
 const update_device_by_id = async (request: FastifyPrmIdBodyRequest<any>, reply: FastifyReply) => {
@@ -52,6 +55,7 @@ const update_device_by_id = async (request: FastifyPrmIdBodyRequest<any>, reply:
         reply.code(500).send({ message: error });
       });
   }
+  return reply;
 };
 
 const delete_device_by_id = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
@@ -70,6 +74,7 @@ const delete_device_by_id = async (request: FastifyParamIdRequest, reply: Fastif
         reply.code(500).send({ message: error });
       });
   }
+  return reply;
 };
 
 const device_router: FastifyPluginAsync = async (app) => {

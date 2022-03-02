@@ -44,7 +44,7 @@ function FullScreenButton() {
 
   useEffect(() => {
     const handleChange = () => {
-      setState(window.document.fullscreenElement !== null);
+      setState(window?.document.fullscreenElement !== null);
     };
     document.addEventListener('fullscreenchange', handleChange);
     return () => document.removeEventListener('fullscreenchange', handleChange);

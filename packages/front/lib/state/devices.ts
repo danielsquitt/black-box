@@ -4,8 +4,8 @@ import {
   BoundActions,
   HookFunction,
 } from 'react-sweet-state';
-import * as actions from './clients_actions';
-import { ClientState as State } from '../types';
+import * as actions from './devices_actions';
+import { DeviceState as State } from '../types';
 
 type Actions = typeof actions;
 
@@ -15,10 +15,10 @@ const initialState: State = {
 };
 
 const Store = createStore<State, Actions>({
-  name: 'clients',
+  name: 'devices',
   initialState,
   actions,
 });
 
-const useClient: HookFunction<State, BoundActions<State, Actions>, void> = createHook(Store);
-export default useClient;
+const useDevice: HookFunction<State, BoundActions<State, Actions>, void> = createHook(Store);
+export default useDevice;

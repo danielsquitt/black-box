@@ -10,7 +10,7 @@ export interface iDevice extends Document {
 
 const schema = new Schema(
   {
-    name: { type: String, require: true, unique: true },
+    alias: { type: String, require: true, unique: true },
     type: { type: String },
     version: { type: String },
     sw_v: { type: String },

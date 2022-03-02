@@ -27,34 +27,40 @@ import DeviceTank from './models/device-tank.models';
   const client1 = await Client.create({
     name: 'Cervezas Arriaca SL',
     address: 'Avda De La Industria 3 A - Nave 6',
-    city: 'Yunquera de Henares, Guadalajara',
+    city: 'Yunquera de Henares',
+    state: 'Guadalajara',
     zip: '19210',
     country: 'España',
+    cif: 'B19297688',
     img: 'https://arriaca.es/wp-content/uploads/2021/01/Arriaca-Favicon.png',
   });
 
   const client2 = await Client.create({
-    name: 'Maresme Brewery Sl.',
+    name: 'Maresme Brewery SL',
     address: 'Calle Empedrat del Marxant, 1 - P 2 PTA. 3',
-    city: 'Alella, Barcelona',
+    city: 'Alella',
+    state: 'Barcelona',
     zip: '08328',
     country: 'España',
+    cif: 'B66745779',
     img: 'https://cdn.shopify.com/s/files/1/0254/8852/3345/files/MB_Logo_LLetres_300x300.png',
   });
 
   const client3 = await Client.create({
     name: 'Cervecera Peninsula SL',
     address: 'Calle de la Granja, 5',
-    city: 'Alcobendas, Madrid',
+    city: 'Alcobendas',
+    state: 'Madrid',
     zip: '28108',
     country: 'España',
+    cif: 'B87696647',
     img: 'https://cdn.shopify.com/s/files/1/0072/8419/5401/files/Logo_Peninsula-03_300x300.png',
   });
 
   // Create Devices
   // --------------------------------------------------------------
   const device1 = await Device.create({
-    name: 'CPCTRL_0722_0001',
+    alias: 'CPCTRL_0722_0001',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -62,7 +68,7 @@ import DeviceTank from './models/device-tank.models';
   });
 
   const device2 = await Device.create({
-    name: 'CPCTRL_0722_0002',
+    alias: 'CPCTRL_0722_0002',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -70,7 +76,7 @@ import DeviceTank from './models/device-tank.models';
   });
 
   const device3 = await Device.create({
-    name: 'CPCTRL_0722_0003',
+    alias: 'CPCTRL_0722_0003',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -78,7 +84,7 @@ import DeviceTank from './models/device-tank.models';
   });
 
   const device4 = await Device.create({
-    name: 'CPCTRL_0722_0004',
+    alias: 'CPCTRL_0722_0004',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -86,7 +92,7 @@ import DeviceTank from './models/device-tank.models';
   });
 
   const device5 = await Device.create({
-    name: 'CPCTRL_0722_0005',
+    alias: 'CPCTRL_0722_0005',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -94,7 +100,7 @@ import DeviceTank from './models/device-tank.models';
   });
 
   const device6 = await Device.create({
-    name: 'CPCTRL_0722_0006',
+    alias: 'CPCTRL_0722_0006',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -102,7 +108,7 @@ import DeviceTank from './models/device-tank.models';
   });
 
   const device7 = await Device.create({
-    name: 'CPCTRL_0722_0007',
+    alias: 'CPCTRL_0722_0007',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -110,7 +116,7 @@ import DeviceTank from './models/device-tank.models';
   });
 
   const device8 = await Device.create({
-    name: 'CPCTRL_0722_0008',
+    alias: 'CPCTRL_0722_0008',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -118,7 +124,7 @@ import DeviceTank from './models/device-tank.models';
   });
 
   const device9 = await Device.create({
-    name: 'CPCTRL_0722_0009',
+    alias: 'CPCTRL_0722_0009',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -126,7 +132,7 @@ import DeviceTank from './models/device-tank.models';
   });
 
   const device10 = await Device.create({
-    name: 'CPCTRL_0722_0010',
+    alias: 'CPCTRL_0722_0010',
     type: 'Type 1',
     version: '1.0.0',
     sw_v: '0.1.0',
@@ -204,7 +210,7 @@ import DeviceTank from './models/device-tank.models';
 
   const device_tank2 = await DeviceTank.create({
     device_id: device2._id,
-    tank_id: tank5._id,
+    tank_id: tank2._id,
   });
 
   const device_tank3 = await DeviceTank.create({

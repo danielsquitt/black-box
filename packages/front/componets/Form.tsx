@@ -26,6 +26,9 @@ const Form = styled.form`
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
   }
+  .input:disabled{
+    background-color: ${(props) => props.theme.color.pallet.grey.dark};
+  }
   .button {
     padding: 0.5rem 2rem;
     background-color: green;

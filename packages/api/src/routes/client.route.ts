@@ -9,6 +9,7 @@ const list_clients = async (request: FastifyRequest, reply: FastifyReply) => {
   }).catch((error) => {
     reply.code(500).send({ message: error });
   });
+  return reply;
 };
 
 const get_client_byId = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
@@ -26,6 +27,7 @@ const get_client_byId = async (request: FastifyParamIdRequest, reply: FastifyRep
     }).catch((error) => {
       reply.code(500).send({ message: error });
     });
+  return reply;
 };
 
 const new_client = async (request: FastifyRequest, reply: FastifyReply) => {
@@ -34,6 +36,7 @@ const new_client = async (request: FastifyRequest, reply: FastifyReply) => {
   }).catch((error) => {
     reply.code(500).send({ message: error });
   });
+  return reply;
 };
 
 const update_client_by_id = async (request: FastifyPrmIdBodyRequest<any>, reply: FastifyReply) => {
@@ -52,6 +55,7 @@ const update_client_by_id = async (request: FastifyPrmIdBodyRequest<any>, reply:
         reply.code(500).send({ message: error });
       });
   }
+  return reply;
 };
 
 const delete_client_by_id = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
@@ -70,6 +74,7 @@ const delete_client_by_id = async (request: FastifyParamIdRequest, reply: Fastif
         reply.code(500).send({ message: error });
       });
   }
+  return reply;
 };
 
 const client_router: FastifyPluginAsync = async (app) => {
@@ -77,7 +82,7 @@ const client_router: FastifyPluginAsync = async (app) => {
   app.get('/:id', get_client_byId);
   app.post('/', new_client);
   app.post('/:id', update_client_by_id);
-  app.delete('/:id', delete_client_by_id);
+  app.delete('/:id/delete', delete_client_by_id);
 };
 
 export default client_router;

@@ -4,10 +4,10 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { FaPlus } from 'react-icons/fa';
 import { MdEdit, MdDelete } from 'react-icons/md';
-import Button from '../componets/Button';
-import Table from '../componets/Table';
-import { H2, OptionsWrapper, TableWrapper } from '../componets/PageElements';
-import useClient from '../lib/state/clients';
+import Button from '../../componets/Button';
+import Table from '../../componets/Table';
+import { H2, OptionsWrapper, TableWrapper } from '../../componets/PageElements';
+import useClient from '../../lib/state/clients';
 
 const PlusIcon = styled(FaPlus)`
   margin: 0 0.5em 0 0;
@@ -15,12 +15,10 @@ const PlusIcon = styled(FaPlus)`
 
 function Clients() {
   const router = useRouter();
-  const [{ data }, { load }] = useClient();
-  useEffect(() => { load(true); }, []);
 
-  const Delete = (id: string) => {
-    console.log('Delete:', id);
-  };
+  const [{ data }, { load, remove }] = useClient();
+
+  useEffect(() => { load(true); }, []);
 
   return (
     <div>
@@ -39,7 +37,7 @@ function Clients() {
             <tr>
               <th>Img</th>
               <th>Name</th>
-              <th>Adress</th>
+              <th>State/Province</th>
               <th>Country</th>
               <th>Edit</th>
               <th>Delete</th>
@@ -52,13 +50,13 @@ function Clients() {
                   <img src={e.img} alt="" />
                 </td>
                 <td>{e.name}</td>
-                <td>{`${e.address} ${e.city}`}</td>
+                <td>{e.state}</td>
                 <td>{e.country}</td>
                 <td>
                   <MdEdit className="button" onClick={() => router.push(`/clients/edit/${e._id}`)} />
                 </td>
                 <td>
-                  <MdDelete className="button" onClick={() => Delete(e._id)} />
+                  <MdDelete className="button" onClick={() => remove(e._id)} />
                 </td>
               </tr>
             ))}
