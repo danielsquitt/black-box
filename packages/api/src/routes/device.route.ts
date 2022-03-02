@@ -1,41 +1,75 @@
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
-import { FastifyParamIdRequest } from '../types/types';
+import { isValidId } from '../lib/db';
+import Device from '../models/device.model';
+import { FastifyParamIdRequest, FastifyPrmIdBodyRequest } from '../types/types';
 
 const list_devices = async (request: FastifyRequest, reply: FastifyReply) => {
-  reply.send({ message: 'get devices: status OK' });
-  reply.code(200);
+  Device.find().lean().then((data) => {
+    reply.code(200).send(data);
+  }).catch((error) => {
+    reply.code(500).send({ message: error });
+  });
 };
 
 const get_device_byId = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
   const { id } = request.params;
-  reply.send({
-    message: 'get devices by id: status OK',
-    id,
+  if (!isValidId(id)) {
+    reply.code(400).send({ message: `Id ${id} is not a valid Id` });
+  }
+  Device.findById(id).lean()
+    .then((data) => {
+      if (data) {
+        reply.code(200).send(data);
+      } else {
+        reply.code(404).send({ message: `device with id ${id} not found` });
+      }
+    }).catch((error) => {
+      reply.code(500).send({ message: error });
+    });
+};
+
+const new_device = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
+  Device.create(request.body).then((data) => {
+    reply.code(200).send(data);
+  }).catch((error) => {
+    reply.code(500).send({ message: error });
   });
-  reply.code(200);
 };
 
-const new_device = async (request: FastifyRequest, reply: FastifyReply) => {
-  reply.send({ message: 'new devices: status OK' });
-  reply.code(200);
-};
-
-const update_device_by_id = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
+const update_device_by_id = async (request: FastifyPrmIdBodyRequest<any>, reply: FastifyReply) => {
   const { id } = request.params;
-  reply.send({
-    message: 'get devices by id: status OK',
-    id,
-  });
-  reply.code(200);
+  if (!isValidId(id)) {
+    reply.code(400).send({ message: `Id ${id} is not a valid Id` });
+  } else {
+    Device.findByIdAndUpdate(id, request.body).lean()
+      .then((data) => {
+        if (data) {
+          reply.code(200).send(data);
+        } else {
+          reply.code(404).send({ message: `user with id ${id} not found` });
+        }
+      }).catch((error) => {
+        reply.code(500).send({ message: error });
+      });
+  }
 };
 
 const delete_device_by_id = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
   const { id } = request.params;
-  reply.send({
-    message: 'delete devices by id: status OK',
-    id,
-  });
-  reply.code(200);
+  if (!isValidId(id)) {
+    reply.code(400).send({ message: `Id ${id} is not a valid Id` });
+  } else {
+    Device.findByIdAndDelete(id).lean()
+      .then((data) => {
+        if (data) {
+          reply.code(200).send(data);
+        } else {
+          reply.code(404).send({ message: `user with id ${id} not found` });
+        }
+      }).catch((error) => {
+        reply.code(500).send({ message: error });
+      });
+  }
 };
 
 const device_router: FastifyPluginAsync = async (app) => {

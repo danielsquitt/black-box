@@ -7,7 +7,7 @@ import { DB_URL, DB_NAME } from './config';
 import Client from './models/client.model';
 import Device from './models/device.model';
 import Tank from './models/tank.model';
-import DeviceTank from './models/device-tank.nodels';
+import DeviceTank from './models/device-tank.models';
 
 (async () => {
   await mongoose.connect(`${DB_URL}/${DB_NAME}`).then(() => console.log(`Conected to ${DB_URL}/${DB_NAME}`));
