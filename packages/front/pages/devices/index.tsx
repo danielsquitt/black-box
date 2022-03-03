@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import Button from '../../componets/Button';
 import Table from '../../componets/Table';
 import { H2, OptionsWrapper, TableWrapper } from '../../componets/PageElements';
 import useDevice from '../../lib/state/devices';
+import useClient from '../../lib/state/clients';
 
 const PlusIcon = styled(FaPlus)`
   margin: 0 0.5em 0 0;
@@ -16,9 +17,8 @@ const PlusIcon = styled(FaPlus)`
 function Devices() {
   const router = useRouter();
 
-  const [{ data }, { load, remove }] = useDevice();
-
-  useEffect(() => { load(true); }, []);
+  const [{ data: data_device }, { remove }] = useDevice();
+  const [{ data: data_client }] = useClient();
 
   return (
     <div>
@@ -44,17 +44,20 @@ function Devices() {
             </tr>
           </thead>
           <tbody>
-            {data.map((e) => (
-              <tr key={e.alias}>
-                <td>{e.alias}</td>
-                <td>{e.client_id}</td>
-                <td>{`${e.type} (${e.version})`}</td>
-                <td>{e.sw_v}</td>
+            {data_device.map((device) => (
+              <tr key={device.alias}>
+                <td>{device.alias}</td>
+                <td>{data_client.find((client) => client._id === device.client_id)?.name}</td>
+                <td>{`${device.type} (${device.version})`}</td>
+                <td>{device.sw_v}</td>
                 <td>
-                  <MdEdit className="button" onClick={() => router.push(`/devices/edit/${e._id}`)} />
+                  <MdEdit
+                    className="button"
+                    onClick={() => router.push(`/devices/edit/${device._id}`)}
+                  />
                 </td>
                 <td>
-                  <MdDelete className="button" onClick={() => remove(e._id)} />
+                  <MdDelete className="button" onClick={() => remove(device._id)} />
                 </td>
               </tr>
             ))}

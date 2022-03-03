@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -16,9 +16,7 @@ const PlusIcon = styled(FaPlus)`
 function Clients() {
   const router = useRouter();
 
-  const [{ data }, { load, remove }] = useClient();
-
-  useEffect(() => { load(true); }, []);
+  const [{ data }, { remove }] = useClient();
 
   return (
     <div>

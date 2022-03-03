@@ -1,16 +1,18 @@
 /* eslint-disable  */
 import React from 'react';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import Button from '../../componets/Button';
 import { FormWrapper, H2, OptionsWrapper } from '../../componets/PageElements';
 import Form from '../../componets/Form';
 import useDevice from '../../lib/state/devices';
 import { DeviceData } from '../../lib/types';
+import useClient from '../../lib/state/clients';
 
 function AddDevice() {
-  const router = useRouter()
+  const router = useRouter();
   const [{}, { add }] = useDevice();
+  const [{ data }] = useClient();
   const {
     register,
     handleSubmit,
@@ -19,6 +21,7 @@ function AddDevice() {
   } = useForm<DeviceData>();
   const onSubmit = (data: DeviceData) => {
     add(data);
+    router.push('/devices');
   };
 
   return (
@@ -50,7 +53,7 @@ function AddDevice() {
           <label htmlFor="version">Version</label>
           <input
             className="input"
-            type="text"                                                   
+            type="text"
             id="version"
             placeholder="Company zip code"
             {...register('version')}
@@ -67,19 +70,26 @@ function AddDevice() {
           />
           {errors.sw_v && <span>This field is required</span>}
 
-          <label htmlFor="client_id">Client Id</label>
-          <input
-            className="input"
-            type="text"
-            id="client_id"
-            placeholder="Client Id"
-            {...register('client_id')}
-          />
-          {errors.client_id && <span>This field is required</span>}
+          <label htmlFor="client_id">Client</label>
+          <select className="input" id="client_id" {...register('client_id')}>
+            <option value="">Select...</option>
+            {data.map((e) => (
+              <option value={e._id}>{e.name}</option>
+            ))}
+          </select>
 
           <div className="button-wrapper">
-            <Button className="success" type='submit'>Add</Button>
-            <Button className="warning" onClick={()=>{router.push(`/devices`)}}>Cancel</Button>
+            <Button className="success" type="submit">
+              Add
+            </Button>
+            <Button
+              className="warning"
+              onClick={() => {
+                router.push(`/devices`);
+              }}
+            >
+              Cancel
+            </Button>
           </div>
         </Form>
       </FormWrapper>

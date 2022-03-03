@@ -82,7 +82,7 @@ const client_router: FastifyPluginAsync = async (app) => {
   app.get('/:id', get_client_byId);
   app.post('/', new_client);
   app.post('/:id', update_client_by_id);
-  app.delete('/:id/delete', delete_client_by_id);
+  app.delete('/:id', delete_client_by_id);
 };
 
 export default client_router;

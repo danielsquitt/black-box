@@ -41,7 +41,7 @@ Action<DeviceState> => async ({ setState, getState }) => {
 export const edit = (id:string, client_data: Partial<DeviceData>):
 Action<DeviceState> => async ({ setState, getState }) => {
   const { data } = getState();
-  const res = await client.post(`/device/${id}/delete`, client_data);
+  const res = await client.post(`/device/${id}`, client_data);
   const new_data = res.data as DeviceModel;
 
   setState({ data: [...data, new_data] });

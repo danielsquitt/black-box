@@ -3,6 +3,7 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import Head from 'next/head';
 import { defaults } from 'react-sweet-state';
+import dynamic from 'next/dynamic';
 import Menu from '../componets/menu';
 import theme from '../lib/theme';
 
@@ -29,6 +30,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const LoadData = dynamic(() => import('../componets/LoadData'), { ssr: false });
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -37,6 +40,7 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="favicon-32x32.png" />
       </Head>
       <GlobalStyle />
+      <LoadData />
       <ThemeProvider theme={theme}>
         <Menu />
         <main>
