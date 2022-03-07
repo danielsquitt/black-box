@@ -4,7 +4,11 @@ import { AppProps } from 'next/dist/shared/lib/router/router';
 import Head from 'next/head';
 import { defaults } from 'react-sweet-state';
 import dynamic from 'next/dynamic';
-import Menu from '../componets/menu';
+import { UserProvider, getSession } from '@auth0/nextjs-auth0';
+import { NextPageContext } from 'next';
+import { IncomingMessage, ServerResponse } from 'http';
+import { uniqueId } from 'lodash';
+import Menu from '../componets/Layout';
 import theme from '../lib/theme';
 
 defaults.devtools = true;
@@ -32,23 +36,39 @@ const GlobalStyle = createGlobalStyle`
 
 const LoadData = dynamic(() => import('../componets/LoadData'), { ssr: false });
 
-function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps, initialUser }: AppProps) {
   return (
-    <>
+    <UserProvider>
       <Head>
         <title>My Page</title>
         <link rel="icon" href="favicon-32x32.png" />
       </Head>
-      <GlobalStyle />
-      <LoadData />
-      <ThemeProvider theme={theme}>
-        <Menu />
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </ThemeProvider>
-    </>
+      <>
+        <GlobalStyle />
+        <LoadData initialUser={initialUser}>
+          <ThemeProvider theme={theme}>
+            <Menu />
+            <main>
+              <Component {...pageProps} />
+            </main>
+          </ThemeProvider>
+        </LoadData>
+      </>
+    </UserProvider>
   );
 }
+
+App.getInitialProps = async ({ ctx }: { ctx: NextPageContext }) => {
+  if (ctx.req && ctx.res) {
+    const session = getSession(ctx.req as IncomingMessage, ctx.res as ServerResponse);
+
+    return {
+      initialUser: session?.user,
+    };
+  }
+  return {
+    initialUser: undefined,
+  };
+};
 
 export default App;

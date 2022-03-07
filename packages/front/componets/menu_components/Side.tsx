@@ -7,6 +7,7 @@ import { HiOutlineDeviceTablet, HiUsers } from 'react-icons/hi';
 import { GiWaterTank } from 'react-icons/gi';
 import { FaBuilding } from 'react-icons/fa';
 import { IconType } from 'react-icons/lib';
+import { useUser } from '@auth0/nextjs-auth0';
 import {
   Aside,
   AsideWrapper,
@@ -22,9 +23,16 @@ import {
 } from './styled.elements';
 
 function NavListItem({
-  active, href, icon, text,
-}:
-{ active: Boolean, href: string, icon: IconType, text: String }) {
+  active,
+  href,
+  icon,
+  text,
+}: {
+  active: Boolean;
+  href: string;
+  icon: IconType;
+  text: String;
+}) {
   return (
     <NavItem>
       <Link href={href} passHref>
@@ -37,9 +45,15 @@ function NavListItem({
   );
 }
 
-function Side({ collapse, setCollapse }:
-{ collapse: Boolean, setCollapse: (state: Boolean) => void }) {
+function Side({
+  collapse,
+  setCollapse,
+}: {
+  collapse: Boolean;
+  setCollapse: (state: Boolean) => void;
+}) {
   const router = useRouter();
+  const { user } = useUser();
 
   return (
     <Aside
@@ -49,16 +63,41 @@ function Side({ collapse, setCollapse }:
     >
       <AsideWrapper>
         <UserWrapper>
-          <UserImg src="https://media-exp1.licdn.com/dms/image/C5603AQHL16fDhzVTCQ/profile-displayphoto-shrink_200_200/0/1516828914548?e=1648684800&v=beta&t=b7PAWOoKy8pWEYT6FfYFdAlq4At95hSp_jSQmiguzSU" />
-          <UserText>Daniel Squittieri Gomez</UserText>
-          <Logout className={cx({ collapse })} />
+          <UserImg src={user?.picture ?? ''} />
+          <UserText>{user?.name ?? ''}</UserText>
+          <Logout className={cx({ collapse })} onClick={() => router.push('/api/auth/logout')} />
         </UserWrapper>
         <NavSide>
-          <NavListItem active={router.pathname.includes('/dashboard')} href="/dashboard" icon={MdDashboard} text="Dashboard" />
-          <NavListItem active={router.pathname.includes('/tanks')} href="/tanks" icon={GiWaterTank} text="Tanks" />
-          <NavListItem active={router.pathname.includes('/devices')} href="/devices" icon={HiOutlineDeviceTablet} text="Devices" />
-          <NavListItem active={router.pathname.includes('/clients')} href="/clients" icon={FaBuilding} text="Clients" />
-          <NavListItem active={router.pathname.includes('/users')} href="/users" icon={HiUsers} text="Users" />
+          <NavListItem
+            active={router.pathname.includes('/dashboard')}
+            href="/dashboard"
+            icon={MdDashboard}
+            text="Dashboard"
+          />
+          <NavListItem
+            active={router.pathname.includes('/tanks')}
+            href="/tanks"
+            icon={GiWaterTank}
+            text="Tanks"
+          />
+          <NavListItem
+            active={router.pathname.includes('/devices')}
+            href="/devices"
+            icon={HiOutlineDeviceTablet}
+            text="Devices"
+          />
+          <NavListItem
+            active={router.pathname.includes('/clients')}
+            href="/clients"
+            icon={FaBuilding}
+            text="Clients"
+          />
+          <NavListItem
+            active={router.pathname.includes('/users')}
+            href="/users"
+            icon={HiUsers}
+            text="Users"
+          />
         </NavSide>
       </AsideWrapper>
     </Aside>

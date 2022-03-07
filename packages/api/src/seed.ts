@@ -8,6 +8,7 @@ import Client from './models/client.model';
 import Device from './models/device.model';
 import Tank from './models/tank.model';
 import DeviceTank from './models/device-tank.models';
+import User, { UserRole, UserState } from './models/user.model';
 
 (async () => {
   await mongoose.connect(`${DB_URL}/${DB_NAME}`).then(() => console.log(`Conected to ${DB_URL}/${DB_NAME}`));
@@ -18,6 +19,7 @@ import DeviceTank from './models/device-tank.models';
     await Device.collection.drop();
     await Tank.collection.drop();
     await DeviceTank.collection.drop();
+    await User.collection.drop();
   } catch (error) {
     console.log('There are no items to drop from db');
   }
@@ -245,6 +247,13 @@ import DeviceTank from './models/device-tank.models';
   const device_tank10 = await DeviceTank.create({
     device_id: device10._id,
     tank_id: tank10._id,
+  });
+
+  const user_admin = await User.create({
+    user_id: 'google-oauth2|106450345766288330983',
+    name: 'Daniel Squittieri',
+    state: UserState.CONFIRM,
+    role: UserRole.ADMIN,
   });
 
   await mongoose.disconnect().then(() => console.log('Disconnected from DB'));
