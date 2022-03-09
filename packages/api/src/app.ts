@@ -9,6 +9,7 @@ import device_tank_router from './routes/device.tank.router';
 import tank_router from './routes/tank.route';
 import user_router from './routes/user.router';
 import { AUTH0_AUDIENCE, AUTH0_DOMAIN } from './config';
+import Authorization from './lib/jwt';
 
 const main_app: FastifyPluginAsync = async (app) => {
   app.register(db_plugin);
@@ -21,6 +22,8 @@ const main_app: FastifyPluginAsync = async (app) => {
     domain: AUTH0_DOMAIN,
     audience: AUTH0_AUDIENCE,
   });
+
+  await app.register(Authorization);
 
   app.get('/verify', {
     handler(request, reply) {

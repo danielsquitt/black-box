@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export enum UserState {
   PENDING = 'pending',
-  CONFIRM = 'confirm',
+  CONFIRM = 'confirmed',
   DENY = 'deny',
 }
 
@@ -23,7 +23,7 @@ export interface iUser extends Document {
 const schema = new Schema(
   {
     client_id: { type: Schema.Types.ObjectId, ref: 'Client' },
-    user_id: { type: String },
+    user_id: { type: String, required: true },
     name: { type: String },
     state: { type: String, num: ['pending', 'confirm', 'deny'], default: 'pending' },
     role: { type: String, num: ['admin', 'owner', 'prod'], default: 'prod' },

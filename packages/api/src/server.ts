@@ -6,8 +6,24 @@ import { PORT } from './config';
 const server = fastify({
   logger: {
     prettyPrint: true,
+    serializers: {
+      res(reply) {
+        // The default
+        return {
+          statusCode: reply.statusCode,
+        };
+      },
+      req(request) {
+        return {
+          method: request.method,
+          url: request.url,
+          path: request.routerPath,
+          parameters: request.params,
+          headers: request.headers,
+        };
+      },
+    },
   },
-  disableRequestLogging: true,
 });
 
 server.register(main_app);

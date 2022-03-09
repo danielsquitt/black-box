@@ -2,7 +2,7 @@
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
 import { isValidId } from '../lib/db';
 import User from '../models/user.model';
-import { FastifyParamIdRequest, FastifyPrmIdBodyRequest, FastifyBodyRequest } from '../types/types';
+import { FastifyParamIdRequest, FastifyPrmIdBodyRequest } from '../types/types';
 
 const list_users = async (request: FastifyRequest, reply: FastifyReply) => {
   User.find().lean().then((data) => {
@@ -10,6 +10,7 @@ const list_users = async (request: FastifyRequest, reply: FastifyReply) => {
   }).catch((error) => {
     reply.code(500).send({ message: error });
   });
+  return reply;
 };
 
 const get_user_byId = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
@@ -27,14 +28,27 @@ const get_user_byId = async (request: FastifyParamIdRequest, reply: FastifyReply
     }).catch((error) => {
       reply.code(500).send({ message: error });
     });
+  return reply;
 };
 
-const new_user = async (request: FastifyBodyRequest<any>, reply: FastifyReply) => {
-  User.create(request.body).then((data) => {
+type CustomRequest = FastifyRequest<{
+  User:{ sub: string },
+  Body:{ client_id: string, name: string }
+}>;
+
+const new_user = async (request: CustomRequest, reply: FastifyReply) => {
+  const user = {
+    user_id: (request.user as { sub: string }).sub,
+    client_id: request.body.client_id,
+    name: request.body.name,
+  };
+
+  User.create(user).then((data) => {
     reply.code(200).send(data);
   }).catch((error) => {
     reply.code(500).send({ message: error });
   });
+  return reply;
 };
 
 const update_user_by_id = async (request: FastifyPrmIdBodyRequest<any>, reply: FastifyReply) => {
@@ -45,7 +59,8 @@ const update_user_by_id = async (request: FastifyPrmIdBodyRequest<any>, reply: F
     User.findByIdAndUpdate(id, request.body).lean()
       .then((data) => {
         if (data) {
-          reply.code(200).send(data);
+          const new_data = { ...data, ...(request.body) };
+          reply.code(200).send(new_data);
         } else {
           reply.code(404).send({ message: `user with id ${id} not found` });
         }
@@ -53,6 +68,7 @@ const update_user_by_id = async (request: FastifyPrmIdBodyRequest<any>, reply: F
         reply.code(500).send({ message: error });
       });
   }
+  return reply;
 };
 
 const delete_user_by_id = async (request: FastifyParamIdRequest, reply: FastifyReply) => {
@@ -71,13 +87,14 @@ const delete_user_by_id = async (request: FastifyParamIdRequest, reply: FastifyR
         reply.code(500).send({ message: error });
       });
   }
+  return reply;
 };
 
 const user_router: FastifyPluginAsync = async (app) => {
   app.get('/', list_users);
   app.get('/:id', get_user_byId);
   app.post('/', new_user);
-  app.patch('/:id', update_user_by_id);
+  app.post('/:id', update_user_by_id);
   app.delete('/:id', delete_user_by_id);
 };
 
