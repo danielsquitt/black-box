@@ -32,7 +32,7 @@ export const remove = (id:string):
 Action<ClientState> => async ({ setState, getState }) => {
   setState({ loading: true });
   const { data } = getState();
-  await front_client.delete(`/api/client/${id}/delete`);
+  await front_client.delete(`/api/client/${id}`);
   const new_state = data.filter((e) => e._id !== id);
   setState({ data: new_state, loading: false });
 };
