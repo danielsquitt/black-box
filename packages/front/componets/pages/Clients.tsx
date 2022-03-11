@@ -51,10 +51,17 @@ function Clients() {
                 <td>{e.state}</td>
                 <td>{e.country}</td>
                 <td>
-                  <MdEdit className="button" onClick={() => router.push(`/clients/edit/${e._id}`)} />
+                  <button className="no-button" type="button" title="Edit">
+                    <MdEdit
+                      className="button primary"
+                      onClick={() => router.push(`/clients/edit/${e._id}`)}
+                    />
+                  </button>
                 </td>
                 <td>
-                  <MdDelete className="button" onClick={() => remove(e._id)} />
+                  <button className="no-button" type="button" title="Delete">
+                    <MdDelete className="button danger" onClick={() => remove(e._id)} />
+                  </button>
                 </td>
               </tr>
             ))}

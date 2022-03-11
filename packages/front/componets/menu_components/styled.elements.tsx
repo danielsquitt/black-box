@@ -77,10 +77,10 @@ export const NavSide = styled.ul`
 
 export const NavItem = styled.li``;
 export const NavLink = styled.a`
-  margin-bottom: 0.2rem;
+  /* margin-bottom: 0.2rem; */
   display: flex;
   align-items: center;
-  border-radius: 0.25rem;
+  /* border-radius: 0.25rem; */
   text-decoration: none;
   background-color: transparent;
   &:visited {

@@ -56,16 +56,16 @@ function Devices() {
                 <td>{`${device.type} (${device.version})`}</td>
                 <td>{device.sw_v}</td>
                 <td>
-                  <button type="button" title=" Accept user">
+                  <button className="no-button" type="button" title="Edit">
                     <MdEdit
-                      className="button"
+                      className="button primary"
                       onClick={() => router.push(`/devices/edit/${device._id}`)}
                     />
                   </button>
                 </td>
                 <td>
-                  <button type="button" title=" Delete user">
-                    <MdDelete className="button" onClick={() => remove(device._id)} />
+                  <button className="no-button" type="button" title="Delete">
+                    <MdDelete className="button danger" onClick={() => remove(device._id)} />
                   </button>
                 </td>
               </tr>
