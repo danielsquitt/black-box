@@ -1,4 +1,14 @@
-# core-final-project
+# The Black Box
+
+<p align="center">
+ <img width="200px" height="200px" src="./assets/logo.jpg">
+</p>
+
+---
+![npm type definitions](https://img.shields.io/npm/types/typescript?style=for-the-badge)
+![npm type definitions](https://img.shields.io/npm/types/typescript?style=for-the-badge)
+
+---
 
 ## Motivación
 
@@ -49,13 +59,19 @@ Artefactos encargados de controlar la temperatura y presión del tanque y que cu
     - name: String
     - address: String
     - city: String
-    - zip: Number
+    - state: String
+    - zip: String
     - country: String
+    - id: String
+    - country: String
+    - img: String
 
 - User
     - user_id: String
+    - name: String,
     - client_id: String
-    - state: String ['pending', 'confirm', 'deny']
+    - state: String ['pending', 'confirmed', 'deny']
+    - role: String ['super_admin', 'admin', 'prod']
 
 - Tank
     - alias: String
@@ -64,6 +80,9 @@ Artefactos encargados de controlar la temperatura y presión del tanque y que cu
 
 - Device
     - name: String
+    - type: String,
+    - version: String,
+    - sw_v: String,
     - client_id: ObjectId('Client')
 
 - DeviceTank
@@ -105,7 +124,7 @@ Artefactos encargados de controlar la temperatura y presión del tanque y que cu
   - `POST /device/:id` Actualiza un dispositivos
   - `DELETE /device/:id` Elimina un dispositivos
 
-- HTTP `DeviceTank`
+- CRUD `DeviceTank`
   - `GET /device-tank` Get link between a device and a tank
   - `PUT /device-tank` Create link between a device and a tank
   - `DELETE /device-tank` Delete link between a device and a tank
@@ -117,8 +136,8 @@ sequenceDiagram
     CLIENT ->> TBB : Contracts
     TBB ->> TBB_APP: Creates Client
     CLIENT ->> TBB_APP: Registers with client id
+    TBB ->> CLIENT: Confirms client user
     USER ->> TBB_APP: Registers with client id
     CLIENT ->> TBB_APP: Confirms user
 ```
 
-## Front

@@ -15,7 +15,7 @@ function NavBar({ setCollapse }:
     <Nav>
       <NavMenu>
         <BrandWrapper onClick={() => { setCollapse((state: Boolean) => !state); }}>
-          <BrandLogo src="https://brand.corecode.school/logos/logo_ball.svg" />
+          <BrandLogo src="logo.jpg" />
           <BrandText>Black Box</BrandText>
         </BrandWrapper>
       </NavMenu>

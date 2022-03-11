@@ -17,7 +17,7 @@ function App({ Component, pageProps, initialUser }: AppProps) {
   return (
     <UserProvider>
       <Head>
-        <title>My Page</title>
+        <title>BlackBox</title>
         <link rel="icon" href="favicon-32x32.png" />
       </Head>
       <>

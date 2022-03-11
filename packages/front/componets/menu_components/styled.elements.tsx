@@ -35,8 +35,9 @@ export const BrandWrapper = styled.a`
 `;
 
 export const BrandLogo = styled.img`
-  max-height: 45px;
-  max-width: 45px;
+  max-height: 48px;
+  max-width: 48px;
+  border-radius: 50%;
 `;
 
 export const BrandText = styled.div`
