@@ -12,6 +12,7 @@ type Actions = typeof actions;
 const initialState: State = {
   data: [],
   loading: false,
+  data_loaded: false,
 };
 
 const Store = createStore<State, Actions>({

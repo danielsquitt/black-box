@@ -1,6 +1,7 @@
 import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
 import { isValidId } from '../lib/db';
 import Client from '../models/client.model';
+import { UserRole, UserState } from '../models/user.model';
 import { FastifyParamIdRequest, FastifyPrmIdBodyRequest } from '../types/types';
 
 const list_clients = async (request: FastifyRequest, reply: FastifyReply) => {
@@ -78,6 +79,12 @@ const delete_client_by_id = async (request: FastifyParamIdRequest, reply: Fastif
 };
 
 const client_router: FastifyPluginAsync = async (app) => {
+  app.addHook('preHandler', async (request: any, reply: FastifyReply) => {
+    if (request.user_custom.state !== UserState.CONFIRM
+      || request.user_custom.role !== UserRole.SUPERADMIN) {
+      reply.code(403).send({ message: 'Forbidden' });
+    }
+  });
   app.get('/', list_clients);
   app.get('/:id', get_client_byId);
   app.post('/', new_client);

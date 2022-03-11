@@ -1,10 +1,18 @@
-import { FastifyPluginAsync, FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyPluginAsync, FastifyReply } from 'fastify';
 import { isValidId } from '../lib/db';
 import Device from '../models/device.model';
+import { UserRole, UserState } from '../models/user.model';
 import { FastifyParamIdRequest, FastifyPrmIdBodyRequest } from '../types/types';
 
-const list_devices = async (request: FastifyRequest, reply: FastifyReply) => {
-  Device.find().lean().then((data) => {
+const list_devices = async (request: any, reply: FastifyReply) => {
+  const {
+    user_custom: {
+      role = undefined, client_id = undefined,
+    } = {},
+  } = request;
+  let query = {};
+  if (role !== UserRole.SUPERADMIN) { query = { client_id }; }
+  Device.find(query).lean().then((data) => {
     reply.code(200).send(data);
   }).catch((error) => {
     reply.code(500).send({ message: error });
@@ -78,6 +86,11 @@ const delete_device_by_id = async (request: FastifyParamIdRequest, reply: Fastif
 };
 
 const device_router: FastifyPluginAsync = async (app) => {
+  app.addHook('preHandler', async (request: any, reply: FastifyReply) => {
+    if (request.user_custom.state !== UserState.CONFIRM) {
+      reply.code(403).send({ message: 'Forbidden' });
+    }
+  });
   app.get('/', list_devices);
   app.get('/:id', get_device_byId);
   app.post('/', new_device);

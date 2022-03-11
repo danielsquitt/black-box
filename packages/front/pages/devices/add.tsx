@@ -1,4 +1,3 @@
-/* eslint-disable  */
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
@@ -11,23 +10,23 @@ import useClient from '../../lib/state/clients';
 
 function AddDevice() {
   const router = useRouter();
-  const [{}, { add }] = useDevice();
+  const [, { add }] = useDevice();
   const [{ data }] = useClient();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<DeviceData>();
-  const onSubmit = (data: DeviceData) => {
-    add(data);
+
+  const onSubmit = (device_data: DeviceData) => {
+    add(device_data);
     router.push('/devices');
   };
 
   return (
-    <div>
+    <>
       <H2>Add Device</H2>
-      <OptionsWrapper></OptionsWrapper>
+      <OptionsWrapper />
       <FormWrapper>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="alias">Alias</label>
@@ -85,7 +84,7 @@ function AddDevice() {
             <Button
               className="warning"
               onClick={() => {
-                router.push(`/devices`);
+                router.push('/devices');
               }}
             >
               Cancel
@@ -93,7 +92,7 @@ function AddDevice() {
           </div>
         </Form>
       </FormWrapper>
-    </div>
+    </>
   );
 }
 

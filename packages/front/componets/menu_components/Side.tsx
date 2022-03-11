@@ -48,9 +48,11 @@ function NavListItem({
 function Side({
   collapse,
   setCollapse,
+  menu,
 }: {
   collapse: Boolean;
   setCollapse: (state: Boolean) => void;
+  menu: { dasboard: Boolean; tanks: Boolean; devices: Boolean; clients: Boolean; users: Boolean };
 }) {
   const router = useRouter();
   const { user } = useUser();
@@ -68,36 +70,46 @@ function Side({
           <Logout className={cx({ collapse })} onClick={() => router.push('/api/auth/logout')} />
         </UserWrapper>
         <NavSide>
-          <NavListItem
-            active={router.pathname.includes('/dashboard')}
-            href="/dashboard"
-            icon={MdDashboard}
-            text="Dashboard"
-          />
+          {menu.dasboard && (
+            <NavListItem
+              active={router.pathname.includes('/dashboard')}
+              href="/dashboard"
+              icon={MdDashboard}
+              text="Dashboard"
+            />
+          )}
+          {menu.tanks && (
           <NavListItem
             active={router.pathname.includes('/tanks')}
             href="/tanks"
             icon={GiWaterTank}
             text="Tanks"
           />
+          )}
+          {menu.devices && (
           <NavListItem
             active={router.pathname.includes('/devices')}
             href="/devices"
             icon={HiOutlineDeviceTablet}
             text="Devices"
           />
+          )}
+          {menu.clients && (
           <NavListItem
             active={router.pathname.includes('/clients')}
             href="/clients"
             icon={FaBuilding}
             text="Clients"
           />
+          )}
+          {menu.users && (
           <NavListItem
             active={router.pathname.includes('/users')}
             href="/users"
             icon={HiUsers}
             text="Users"
           />
+          )}
         </NavSide>
       </AsideWrapper>
     </Aside>

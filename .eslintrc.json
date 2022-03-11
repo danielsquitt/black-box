@@ -31,6 +31,12 @@
             "exceptions": ["Component"]
         }],
         "jsx-a11y/label-has-associated-control":"off",
-        "import/prefer-default-export":"off"
+        "import/prefer-default-export":"off",
+        "react/jsx-props-no-spreading":"off",
+        "jsx-a11y/control-has-associated-label": [2, {
+            "ignoreElements":[
+                "th"
+            ]
+        }]
     }
 }

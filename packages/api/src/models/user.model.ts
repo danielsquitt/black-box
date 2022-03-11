@@ -7,8 +7,8 @@ export enum UserState {
 }
 
 export enum UserRole {
+  SUPERADMIN = 'super_admin',
   ADMIN = 'admin',
-  OWNER = 'owner',
   PROD = 'prod',
 }
 
@@ -26,7 +26,7 @@ const schema = new Schema(
     user_id: { type: String, required: true },
     name: { type: String },
     state: { type: String, num: ['pending', 'confirm', 'deny'], default: 'pending' },
-    role: { type: String, num: ['admin', 'owner', 'prod'], default: 'prod' },
+    role: { type: String, num: ['super_admin', 'admin', 'prod'], default: 'prod' },
   },
   {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },

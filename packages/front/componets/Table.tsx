@@ -8,7 +8,7 @@ const Table = styled.table`
     height: 60px;
     border: 0 solid transparent;
   }
-  tbody>tr{
+  tbody > tr {
     border-top: ${(props) => props.theme.border};
   }
   th {
@@ -30,7 +30,7 @@ const Table = styled.table`
   .img {
     filter: invert(100%) sepia(0%) saturate(7486%) hue-rotate(185deg) brightness(112%)
       contrast(100%);
-      padding:  0;
+    padding: 0;
   }
   .button {
     cursor: pointer;
@@ -38,6 +38,17 @@ const Table = styled.table`
   .button:hover {
     color: #ffffffcc;
   }
+  .no-button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: inherit;
+    outline: inherit;
+  }
+
+  
 `;
 
 export default Table;

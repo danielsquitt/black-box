@@ -13,6 +13,7 @@ const initialState: State = {
   data: [],
   current: undefined,
   loading: false,
+  data_loaded: false,
 };
 
 const Store = createStore<State, Actions>({

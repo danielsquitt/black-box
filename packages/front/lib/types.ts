@@ -24,6 +24,7 @@ export interface ClientModel extends Document, ClientData {}
 export type ClientState = {
   data: Array<ClientModel>,
   loading: boolean,
+  data_loaded: boolean,
 };
 
 // Device data
@@ -41,6 +42,7 @@ export interface DeviceModel extends Document, DeviceData {}
 export type DeviceState = {
   data: Array<DeviceModel>,
   loading: boolean,
+  data_loaded: boolean,
 };
 
 // User data
@@ -53,15 +55,15 @@ export enum UserStateEnum {
 }
 
 export enum UserRoleEnum {
+  SUPERADMIN = 'super_admin',
   ADMIN = 'admin',
-  OWNER = 'owner',
   PROD = 'prod',
 }
 
 export interface UserData {
-  user_id: String,
-  name: String,
-  client_id: String,
+  user_id: string,
+  name: string,
+  client_id: string,
   state:UserStateEnum,
   role:UserRoleEnum,
 }
@@ -69,9 +71,10 @@ export interface UserData {
 export interface UserModel extends Document, UserData {}
 
 export type UserState = {
-  data: Array<DeviceModel>,
+  data: Array<UserModel>,
   current: UserModel | undefined,
   loading: boolean,
+  data_loaded: boolean,
 };
 
 // Auth0

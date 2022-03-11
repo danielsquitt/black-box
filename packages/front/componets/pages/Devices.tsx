@@ -9,6 +9,8 @@ import Table from '../Table';
 import { H2, OptionsWrapper, TableWrapper } from '../PageElements';
 import useDevice from '../../lib/state/devices';
 import useClient from '../../lib/state/clients';
+import useUsers from '../../lib/state/users';
+import { UserRoleEnum } from '../../lib/types';
 
 const PlusIcon = styled(FaPlus)`
   margin: 0 0.5em 0 0;
@@ -19,6 +21,7 @@ function Devices() {
 
   const [{ data: data_device }, { remove }] = useDevice();
   const [{ data: data_client }] = useClient();
+  const [{ current }] = useUsers();
 
   return (
     <div>
@@ -36,28 +39,34 @@ function Devices() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Client</th>
+              {(current?.role === UserRoleEnum.SUPERADMIN && <th>Client</th>)}
               <th>Type</th>
               <th>SW Version</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th />
+              <th />
             </tr>
           </thead>
           <tbody>
             {data_device.map((device) => (
               <tr key={device.alias}>
                 <td>{device.alias}</td>
-                <td>{data_client.find((client) => client._id === device.client_id)?.name}</td>
+                {current?.role === UserRoleEnum.SUPERADMIN && (
+                  <td>{data_client.find((client) => client._id === device.client_id)?.name}</td>
+                )}
                 <td>{`${device.type} (${device.version})`}</td>
                 <td>{device.sw_v}</td>
                 <td>
-                  <MdEdit
-                    className="button"
-                    onClick={() => router.push(`/devices/edit/${device._id}`)}
-                  />
+                  <button type="button" title=" Accept user">
+                    <MdEdit
+                      className="button"
+                      onClick={() => router.push(`/devices/edit/${device._id}`)}
+                    />
+                  </button>
                 </td>
                 <td>
-                  <MdDelete className="button" onClick={() => remove(device._id)} />
+                  <button type="button" title=" Delete user">
+                    <MdDelete className="button" onClick={() => remove(device._id)} />
+                  </button>
                 </td>
               </tr>
             ))}

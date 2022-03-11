@@ -5,15 +5,6 @@ import { client } from '../../lib/fetcher';
 export default withApiAuthRequired(async (req: NextApiRequest, res: NextApiResponse) => {
   // console.log('new client request', req);
   const { accessToken } = await getAccessToken(req, res);
-  // console.log(accessToken);
-
-  const response = await client.get('/verify', {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  res.status(200).json(response.data);
-  // console.log(response);
 
   if (req.method === 'GET') {
     try {

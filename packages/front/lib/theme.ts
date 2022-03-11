@@ -1,3 +1,5 @@
+import { createGlobalStyle } from 'styled-components';
+
 const theme = {
   color: {
     main: {
@@ -68,3 +70,93 @@ const theme = {
 };
 
 export default theme;
+
+export const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root{
+    font-family: 'Segoe UI';
+    font-size: 18px;
+  }
+  main {
+    margin-top: ${theme.size.navbar};
+    margin-left: ${theme.size.sidebar_collapse};
+    padding: 0.5rem;
+  }
+  body {
+    background-color: ${theme.color.main.background};
+    color: ${theme.color.main.color}
+  }
+  .primary {
+    color: ${theme.color.pallet.primary.main};
+  }
+  .primary-light {
+    color: ${theme.color.pallet.primary.light};
+  }
+  .primary-dark {
+    color: ${theme.color.pallet.primary.dark};
+  }
+
+  .secondary {
+    color: ${theme.color.pallet.secondary.main};
+  }
+  .secondary-light {
+    color: ${theme.color.pallet.secondary.light};
+  }
+  .secondary-dark {
+    color: ${theme.color.pallet.secondary.dark};
+  }
+
+  .success {
+    color: ${theme.color.pallet.success.main};
+  }
+  .success-light {
+    color: ${theme.color.pallet.success.light};
+  }
+  .success-dark {
+    color: ${theme.color.pallet.success.dark};
+  }
+
+  .danger {
+    color: ${theme.color.pallet.danger.main};
+  }
+  .danger-light {
+    color: ${theme.color.pallet.danger.light};
+  }
+  .danger-dark {
+    color: ${theme.color.pallet.danger.dark};
+  }
+
+  .warning {
+    color: ${theme.color.pallet.warning.main};
+  }
+  .warning-light {
+    color: ${theme.color.pallet.warning.light};
+  }
+  .warning-dark {
+    color: ${theme.color.pallet.warning.dark};
+  }
+
+  .info {
+    color: ${theme.color.pallet.info.main};
+  }
+  .info-light {
+    color: ${theme.color.pallet.info.light};
+  }
+  .info-dark {
+    color: ${theme.color.pallet.info.dark};
+  }
+
+  .grey {
+    color: ${theme.color.pallet.grey.main};
+  }
+  .grey-light {
+    color: ${theme.color.pallet.grey.light};
+  }
+  .grey-dark {
+    color: ${theme.color.pallet.grey.dark};
+  }
+`;

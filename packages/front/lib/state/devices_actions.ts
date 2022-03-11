@@ -1,48 +1,59 @@
 import { Action } from 'react-sweet-state';
-import { client } from '../fetcher';
+import { front_client } from '../fetcher';
 import {
   DeviceData, DeviceModel, DeviceState,
 } from '../types';
 
-export const load = (reload:boolean):
+export const load = ():
 Action<DeviceState> => async ({ setState, getState }) => {
   if (getState().loading) return;
-  if (getState().data.length && !reload) return;
-
+  if (getState().data_loaded) return;
   setState({
     loading: true,
-    data: [], // reset
+    data: [],
   });
-  const res = await client.get('/device');
+  const res = await front_client.get('/api/device');
 
   setState({
     loading: false,
     data: res.data,
+    data_loaded: true,
   });
 };
 
 export const add = (device_data: Partial<DeviceData>):
 Action<DeviceState> => async ({ setState, getState }) => {
+  setState({ loading: true });
   const { data } = getState();
-  const res = await client.post('/device', device_data);
+  const res = await front_client.post('/api/device', device_data);
   const new_data = res.data as DeviceModel;
 
-  setState({ data: [...data, new_data] });
+  setState({ data: [...data, new_data], loading: false });
 };
 
 export const remove = (id:string):
 Action<DeviceState> => async ({ setState, getState }) => {
+  setState({ loading: true });
   const { data } = getState();
-  await client.delete(`/device/${id}`);
+  await front_client.delete(`/api/device/${id}`);
   const new_state = data.filter((e) => e._id !== id);
-  setState({ data: new_state });
+  setState({ data: new_state, loading: false });
+};
+
+export const clear = ():
+Action<DeviceState> => async ({ setState }) => {
+  setState({
+    data: [],
+    data_loaded: false,
+  });
 };
 
 export const edit = (id:string, client_data: Partial<DeviceData>):
 Action<DeviceState> => async ({ setState, getState }) => {
+  setState({ loading: true });
   const { data } = getState();
-  const res = await client.post(`/device/${id}`, client_data);
+  const res = await front_client.post(`/api/device/${id}`, client_data);
   const new_data = res.data as DeviceModel;
 
-  setState({ data: [...data, new_data] });
+  setState({ data: [...data, new_data], loading: false });
 };
