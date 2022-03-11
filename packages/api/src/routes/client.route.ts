@@ -48,7 +48,8 @@ const update_client_by_id = async (request: FastifyPrmIdBodyRequest<any>, reply:
     Client.findByIdAndUpdate(id, request.body).lean()
       .then((data) => {
         if (data) {
-          reply.code(200).send(data);
+          const new_data = { ...data, ...(request.body) };
+          reply.code(200).send(new_data);
         } else {
           reply.code(404).send({ message: `client with id ${id} not found` });
         }

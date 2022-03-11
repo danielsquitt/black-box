@@ -5,19 +5,20 @@
 </p>
 
 ---
-# Index
+# Índice
 
 - [Motivación](#motivación)
 - [Descripción del proyecto](#descripción-del-proyecto)
 - [Objetos de la aplicación](#objetos-de-la-aplicación)
 - [API](#api)
 - [Registration flow](#registration-flow)
+- [Technologies](#technologies)
 - [Dependencies](#dependencies)
 - [License](#license)
 
 ## Motivación
 
-Actualmente estoy desarrollando un pryecto junto con unos compañeros para la automatización del 
+Actualmente estoy desarrollando un proyecto junto con unos compañeros para la automatización del 
 proceso de fermentación y maduración de la cerveza. Una parte de este proyecto consiste en una 
 aplicación web para gestionar todo. En este proyecto se pretende alcanzar las funcionalidades 
 mínimas de está aplicación
@@ -43,7 +44,7 @@ En la application de propietario se mostrará los apartados para gestionar clien
 
 Cada fabrica de cerveza que tiene comprados dispositivos
 
-### **Usuario**
+#### **Usuario**
 
 Cada una de las personas con acceso a la aplicación
 
@@ -145,6 +146,10 @@ sequenceDiagram
     USER ->> TBB_APP: Registers with client id
     CLIENT ->> TBB_APP: Confirms user
 ```
+## Technologies 
+- Auth0
+- MongoDB
+- Typescript
 
 ## Dependencies
 - Typescript (v4.5.5)

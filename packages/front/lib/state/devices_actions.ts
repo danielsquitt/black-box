@@ -54,6 +54,7 @@ Action<DeviceState> => async ({ setState, getState }) => {
   const { data } = getState();
   const res = await front_client.post(`/api/device/${id}`, client_data);
   const new_data = res.data as DeviceModel;
+  const old_data = data.filter((device) => device._id !== id);
 
-  setState({ data: [...data, new_data], loading: false });
+  setState({ data: [...old_data, new_data], loading: false });
 };

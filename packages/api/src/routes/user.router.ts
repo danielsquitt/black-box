@@ -78,8 +78,6 @@ const new_user = async (request: CustomRequest, reply: FastifyReply) => {
 };
 
 const update_user_by_id = async (request: any, reply: FastifyReply) => {
-  console.log(request);
-
   const { id } = request.params;
   const {
     user_custom: {
@@ -89,7 +87,6 @@ const update_user_by_id = async (request: any, reply: FastifyReply) => {
   if (state !== UserState.CONFIRM) {
     return reply.code(403).send({ message: 'Forbidden' });
   }
-  console.log('Query', id, 'state', state, 'role', role, 'custom_id', _id);
 
   let query = {};
   switch (role) {

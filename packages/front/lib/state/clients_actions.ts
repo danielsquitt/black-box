@@ -43,6 +43,7 @@ Action<ClientState> => async ({ setState, getState }) => {
   const { data } = getState();
   const res = await front_client.post(`/api/client/${id}`, client_data);
   const new_data = res.data as ClientModel;
+  const old_data = data.filter((client) => client._id !== id);
 
-  setState({ data: [...data, new_data], loading: false });
+  setState({ data: [...old_data, new_data], loading: false });
 };
