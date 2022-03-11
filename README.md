@@ -5,14 +5,19 @@
 </p>
 
 ---
-![npm type definitions](https://img.shields.io/npm/types/typescript?style=for-the-badge)
-![npm type definitions](https://img.shields.io/npm/types/typescript?style=for-the-badge)
+# Index
 
----
+- [Motivación](#motivación)
+- [Descripción del proyecto](#descripción-del-proyecto)
+- [Objetos de la aplicación](#objetos-de-la-aplicación)
+- [API](#api)
+- [Registration flow](#registration-flow)
+- [Dependencies](#dependencies)
+- [License](#license)
 
 ## Motivación
 
-Actualmente estoy desarrollando un proyecto junto con unos compañeros para la automatización del 
+Actualmente estoy desarrollando un pryecto junto con unos compañeros para la automatización del 
 proceso de fermentación y maduración de la cerveza. Una parte de este proyecto consiste en una 
 aplicación web para gestionar todo. En este proyecto se pretende alcanzar las funcionalidades 
 mínimas de está aplicación
@@ -92,7 +97,7 @@ Artefactos encargados de controlar la temperatura y presión del tanque y que cu
 
 ```
 
-### API
+### CRUD
 
 - CRUD `Clients`
 
@@ -141,3 +146,31 @@ sequenceDiagram
     CLIENT ->> TBB_APP: Confirms user
 ```
 
+## Dependencies
+- Typescript (v4.5.5)
+- Eslint: (v8.9.0)
+
+- fastify: (v3.27.2)
+- fastify-auth0-verify: (v0.7.0)
+- fastify-cors: (v6.0.3)
+- fastify-plugin: (v3.0.1)
+- fastify-formbody: (v5.2.0)
+- pino: (v7.8.0)
+- pino-pretty: (v7.5.1)
+- dotenv: (v16.0.0)
+- mongoose: (v6.2.2)
+
+- axios: (v0.26.0)
+- classnames: (v2.3.1)
+- lodash: (v4.17.21)
+- next: (v12.1.0)
+- react: (v17.0.2)
+- react-dom: (v17.0.2)
+- react-hook-form: (v7.27.1)
+- react-icons: (v4.3.1)
+- react-sweet-state: (v2.5.2)
+- styled-components: (v5.3.3)
+
+
+## License
+GNU General Public License Version 3
